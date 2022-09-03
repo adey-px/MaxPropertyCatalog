@@ -13,6 +13,7 @@ body {
   background: #4d4d4d;
 }
 
+/* SlideDrawer for mobile view */
 .slide-in-left-enter {
   transform: translateX(-100%);
 }
