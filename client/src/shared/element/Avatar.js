@@ -18,6 +18,6 @@ const Avatar = props => {
       />
     </div>
   );
-};
+}
 
 export default Avatar;

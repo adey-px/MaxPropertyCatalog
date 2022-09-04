@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './Backdrop.css';
 
+
 const Backdrop = props => {
 
   return ReactDOM.createPortal(
@@ -15,6 +16,6 @@ const Backdrop = props => {
     document.getElementById('backdrop')
 
   );
-};
+}
 
 export default Backdrop;

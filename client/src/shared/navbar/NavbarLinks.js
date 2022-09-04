@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import './NavbarLinks.css';
 
-import './NavbarLinks.css'
 
 const NavbarLinks = props => {
   return (
@@ -13,7 +13,7 @@ const NavbarLinks = props => {
             <NavLink exact to="/">All Users</NavLink>
         </li>
         <li>
-            <NavLink to="/u1/places">My Places</NavLink>
+            <NavLink to="/user1/user-places">My Places</NavLink>
         </li>
         <li>
             <NavLink to="/places/new">Add Place</NavLink>
@@ -22,7 +22,7 @@ const NavbarLinks = props => {
             <NavLink to="/auth">Authenticate</NavLink>
         </li>
     </ul>
-  )
+  );
 }
 
-export default NavbarLinks
+export default NavbarLinks;
