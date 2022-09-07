@@ -36,7 +36,6 @@ const MainNavbar = props => {
           <NavbarLinks />
         </nav>
       </SideDrawer>
-    
       
       {/* For children in mainHeader comp */}
       <MainHeader>
@@ -47,7 +46,7 @@ const MainNavbar = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/"> Your Places</Link>
+          <Link to="/">GeoTracker</Link>
         </h1>
         <nav className='main-navigation__header-nav'>
           <NavbarLinks />

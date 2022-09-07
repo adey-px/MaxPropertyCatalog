@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import PlaceAnchor from '../components/PlaceAnchor';
 
 
-const PlacePage = () => {
+const ViewPlace = () => {
 
   // Dummy temporary data for places
   const DUMMY_PLACES = [
@@ -37,17 +37,17 @@ const PlacePage = () => {
     }
   ];
 
-  // Sort places by user-id encoded in placePage route in App
+  // Sort places by user-id encoded in viewPlace url in App
   const userID = useParams().uid;
 
-  const userPlaces = DUMMY_PLACES.filter(
+  const getPlace = DUMMY_PLACES.filter(
                       place => place.creator === userID
   )
 
   // Display data for places in placeAnchor comp
-  return <PlaceAnchor places={userPlaces} />;
+  return <PlaceAnchor places={getPlace} />;
 
 };
 
 
-export default PlacePage;
+export default ViewPlace;

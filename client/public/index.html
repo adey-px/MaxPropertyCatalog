@@ -2,19 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
 
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC86SYHbnWAo5M3Ur_JRNbLsekThObSki0"
+      async
+      defer
+    ></script>
     
     <title>Star Geotracker - Home</title>
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Modal comp in element dir for modal -->
+    <div id="modal"></div>
 
     <!-- Backdrop comp in element dir for closing sideDraw -->
     <div id="backdrop"></div>
@@ -24,6 +31,5 @@
 
     <!-- APP comp is rendered here as default -->
     <div id="root"></div>
-
   </body>
 </html>

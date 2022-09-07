@@ -13,10 +13,10 @@ const NavbarLinks = props => {
             <NavLink exact to="/">All Users</NavLink>
         </li>
         <li>
-            <NavLink to="/user1/user-places">My Places</NavLink>
+            <NavLink to="/user-places/user1">My Places</NavLink>
         </li>
         <li>
-            <NavLink to="/places/new">Add Place</NavLink>
+            <NavLink to="/new-place">Add Place</NavLink>
         </li>
         <li>
             <NavLink to="/auth">Authenticate</NavLink>

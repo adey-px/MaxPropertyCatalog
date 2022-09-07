@@ -13,7 +13,7 @@ const UserDisplay = props => {
         <list className="user-item">
 
             <Card className="user-item__content">
-                <Link to={`/${props.id}/user-places`}>
+                <Link to={`/user-places/${props.id}`}>
                     <div className="user-item__image">
                         <Avatar image={props.image} 
                                 alt={props.name}
