@@ -24,15 +24,15 @@ const inputReducer = (state, action) => {
     }
 };
 
-/////////////////////////
+
 // Input comp starts here
 const Input = props => {
 
-    // When user inputs. Props sets initial values for updatePlace
+    // When user inputs. Set values from updatePlace comp
     const [inputState, dispatch] = useReducer(inputReducer, { 
-        value: props.value || " ",
+        value: props.initialValue || " ",
         isTouched: false,
-        isValid: props.valid || false
+        isValid: props.initValidity || false
     });
 
     // For inputHandler in newPlace comp
@@ -58,7 +58,6 @@ const Input = props => {
         });
     };
 
-    ///////////////////////////////
     // Form input for newPlace comp 
     const element =
         props.element === 'input' ? (

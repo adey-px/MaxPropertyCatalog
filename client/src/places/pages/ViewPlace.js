@@ -10,7 +10,7 @@ const ViewPlace = () => {
   const DUMMY_PLACES = [
     {
       id: 'place1',
-      title: 'Empire State Building',
+      title: 'London State Building',
       description: 'One of the most famous sky scrapers in the world!',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
       address: '20 W 34th St, New York, NY 10001',
@@ -24,7 +24,7 @@ const ViewPlace = () => {
 
     {
       id: 'place2',
-      title: 'Empire State Building',
+      title: 'Dallas State Building',
       description: 'One of the most famous sky scrapers in the world!',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
       address: '20 W 34th St, New York, NY 10001',
@@ -40,14 +40,13 @@ const ViewPlace = () => {
   // Sort places by user-id encoded in viewPlace url in App
   const userID = useParams().uid;
 
-  const getPlace = DUMMY_PLACES.filter(
+  const userPlace = DUMMY_PLACES.filter(
                       place => place.creator === userID
-  )
+  );
 
   // Display data for places in placeAnchor comp
-  return <PlaceAnchor places={getPlace} />;
+  return <PlaceAnchor places={userPlace} />;
 
 };
-
 
 export default ViewPlace;
