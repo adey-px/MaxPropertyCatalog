@@ -1,26 +1,54 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { AuthContext } from '../contextapi/authContext';
 import './NavbarLinks.css';
 
 
 const NavbarLinks = props => {
+
+    // To check login and logout usin authContext
+    const getAuth = useContext(AuthContext);
+
   return (
 
-    // Define children for sideDrawer
+    // navLinks as children for sideDrawer comp
     <ul className="nav-links">
         <li>
-            <NavLink exact to="/">All Users</NavLink>
+            <NavLink exact to="/">Members</NavLink>
         </li>
-        <li>
-            <NavLink to="/user-places/user1">My Places</NavLink>
-        </li>
-        <li>
-            <NavLink to="/new-place">Add Place</NavLink>
-        </li>
-        <li>
-            <NavLink to="/auth">Authenticate</NavLink>
-        </li>
+
+        {getAuth.loggedIn && (
+            <li>
+                <NavLink to="/user-places/user1">
+                    My Places
+                </NavLink>
+            </li>
+        )}
+
+        {getAuth.loggedIn && (
+            <li>
+                <NavLink to="/new-place">
+                    Add Place
+                </NavLink>
+            </li>
+        )}
+
+        {!getAuth.loggedIn && (
+            <li>
+                <NavLink to="/authUser">
+                    Account
+                </NavLink>
+            </li>
+        )}
+        
+        {getAuth.loggedIn && (
+            <li>
+                <button onClick={getAuth.logout}>
+                    Logout
+                </button>
+            </li>
+        )}
     </ul>
   );
 }

@@ -1,0 +1,19 @@
+.auth__header {
+    color: black;
+    text-align: center;
+}
+  
+.auth__body {
+    width: 90%;
+    max-width: 25rem;
+    margin: 7rem auto;
+    text-align: left;
+}
+  
+.btn-center {
+    text-align: center;
+}
+
+.auth__body form {
+    margin-bottom: 1rem;
+}

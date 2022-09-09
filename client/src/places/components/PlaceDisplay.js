@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 
 import Card from '../../shared/element/Card';
 import Button from '../../shared/form/Button';
 import Modal from '../../shared/element/Modal';
 import Map from '../../shared/element/Map';
+import { AuthContext } from '../../shared/contextapi/authContext';
 import './PlaceDisplay.css';
 
 
 const PlaceDisplay = props => {
+
+  // For hidding edit/delete btn for unAuth user
+  const getAuth = useContext(AuthContext);
 
   // State hook and handler for Modal in shared element
   const [showMap, setShowMap] = useState(false);
@@ -31,7 +35,6 @@ const PlaceDisplay = props => {
     console.log("The place has been deleted successfully");
   };
     
-  
   return (
     <React.Fragment>
 
@@ -59,6 +62,7 @@ const PlaceDisplay = props => {
         show={confirmDel}
         onCancel={cancelHandler}
         header="Warning Alert!!" 
+        headerClass="bg-warning_color"
         footerClass="place-item__modal-actions"
         footer={
           <React.Fragment>
@@ -97,13 +101,17 @@ const PlaceDisplay = props => {
               View On Map
             </Button>
 
-            <Button to={`/update-place/${props.id}`}>
-              Edit
-            </Button>
+            {getAuth.loggedIn && (
+              <Button to={`/update-place/${props.id}`}>
+                Edit
+              </Button>
+            )}
 
-            <Button danger onClick={warningHandler}>
-              Delete
-            </Button>
+            {getAuth.loggedIn && (
+              <Button danger onClick={warningHandler}>
+                Delete
+              </Button>
+            )}
           </div>
         </Card>
       </li>

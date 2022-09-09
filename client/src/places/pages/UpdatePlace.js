@@ -5,7 +5,7 @@ import Input from '../../shared/form/Input';
 import Button from '../../shared/form/Button';
 import {VALIDATOR_REQUIRED, VALIDATOR_MINLENGTH
           } from '../../shared/form/validators';
-import { useForm } from '../../shared/customhook/FormHook';
+import { useForm } from '../../shared/custmhook/formHook';
 import './NewPlace.css';
 
 
@@ -105,9 +105,11 @@ const UpdatePlace = () => {
         initialValue={formState.inputs.description.value}
         initValidity={formState.inputs.description.isValid}
       />
-      <Button type="submit" disabled={!formState.isValid}>
-        Update
-      </Button>
+      <div className="btn-center">
+        <Button type="submit" disabled={!formState.isValid}>
+          Update
+        </Button>
+      </div>
     </form>
   );
 };

@@ -4,7 +4,7 @@ import Input from '../../shared/form/Input';
 import Button from '../../shared/form/Button';
 import { VALIDATOR_MINLENGTH, 
         VALIDATOR_REQUIRED } from '../../shared/form/validators';
-import { useForm } from '../../shared/customhook/FormHook';
+import { useForm } from '../../shared/custmhook/formHook';
 import './NewPlace.css';
 
 
@@ -63,9 +63,12 @@ const NewPlace = () => {
         errorText="Please enter a valid address" 
         onInput={inputHandler}   
       />
-      <Button type="submit" disabled={!formState.isValid}>
-        Add Place
-      </Button>
+      <div className="btn-center">
+        <Button type="submit" disabled={!formState.isValid}>
+          Add Place
+        </Button>
+      </div>
+      
     </form>
 
   );

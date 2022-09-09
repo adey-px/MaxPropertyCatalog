@@ -43,6 +43,10 @@
   text-align: right;
 }
 
+.bg-warning_color {
+  background: red;
+}
+
 .place-item__actions button,
 .place-item__actions a {
   margin: 0.5rem;
