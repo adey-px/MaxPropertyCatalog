@@ -1,0 +1,31 @@
+{
+  "name": "star-geotracker",
+  "version": "1.0.0",
+  "description": "This app can be used to track the number of places and locations which users have visited  with real time monitoring and accurate data.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adey-px/star-geotracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adey-px/star-geotracker/issues"
+  },
+  "homepage": "https://github.com/adey-px/star-geotracker#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
