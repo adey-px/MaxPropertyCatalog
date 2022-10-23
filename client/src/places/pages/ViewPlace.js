@@ -41,7 +41,7 @@ const ViewPlace = () => {
   const userID = useParams().uid;
 
   const userPlace = DUMMY_PLACES.filter(
-                      place => place.creator === userID
+      place => place.creator === userID
   );
 
   // Display data for places in placeAnchor comp

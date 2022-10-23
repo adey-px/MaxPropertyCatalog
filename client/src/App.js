@@ -1,17 +1,21 @@
-import React, {useState, useCallback} from "react";
-import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
+import React, { useState, useCallback } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 
-import MainNavbar from "./shared/navbar/MainNavbar";
-import UserPage from "./users/pages/UserPage";
+import MainNavbar from "./commons/navbar/MainNavbar";
+import UsersList from "./users/pages/UsersList";
 import ViewPlace from "./places/pages/ViewPlace";
 import NewPlace from "./places/pages/NewPlace";
 import UpdatePlace from "./places/pages/UpdatePlace";
-import AuthUser from "./users/pages/AuthUser";
-import { AuthContext } from "./shared/contextapi/authContext";
-
+import AuthsUser from "./users/pages/AuthsUser";
+import { AuthsContext } from "./contextApi/AuthsContext";
 
 const App = () => {
-
+  //
   // State hooks for authContext below, to navLinks comp
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -23,39 +27,38 @@ const App = () => {
     setLoggedIn(false);
   }, []);
 
-
-  // Redirect users to selected routes 
+  // Redirect users to selected routes
   let routes;
 
   if (loggedIn) {
     routes = (
       <React.Fragment>
         <Redirect to="/" />,
-        <Route exact path="/" component={UserPage} />
+        <Route exact path="/" component={UsersList} />
         <Route exact path="/user-places/:uid" component={ViewPlace} />
         <Route exact path="/new-place" component={NewPlace} />
         <Route exact path="/update-place/:pid" component={UpdatePlace} />
-        <Route exact path="/authUser" component={AuthUser} />
-      </React.Fragment> 
+        <Route exact path="/auth-User" component={AuthsUser} />
+      </React.Fragment>
     );
   } else {
     routes = (
       <React.Fragment>
-        <Redirect to="/authUser" />
-        <Route exact path="/" component={UserPage} />
+        <Redirect to="/" />
+        <Route exact path="/" component={UsersList} />
         <Route exact path="/user-places/:uid" component={ViewPlace} />
-        <Route exact path="/authUser" component={AuthUser} />
+        <Route exact path="/auth-User" component={AuthsUser} />
       </React.Fragment>
     );
   }
 
   return (
-
-    // Wrap all routes with authContext from contextapi
-    <AuthContext.Provider value={{
+    // Wrap all routes with authsContext from contextapi
+    <AuthsContext.Provider
+      value={{
         loggedIn: loggedIn,
-        login:login,
-        logout: logout
+        login: login,
+        logout: logout,
       }}
     >
       <Router>
@@ -64,11 +67,9 @@ const App = () => {
         <main>
           <Switch>{routes}</Switch>
         </main>
-        
       </Router>
-    </AuthContext.Provider>
-
-  ); 
-}
+    </AuthsContext.Provider>
+  );
+};
 
 export default App;

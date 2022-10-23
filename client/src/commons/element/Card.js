@@ -4,9 +4,10 @@ import './Card.css';
 
 
 const Card = props => {
+  //
   return (
     <div className={`card ${props.className}`} 
-         style={props.style}
+      style={props.style}
     >
       {props.children}
     </div>

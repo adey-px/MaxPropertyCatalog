@@ -1,17 +1,15 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from "react";
 
-import Card from '../../shared/element/Card';
-import Button from '../../shared/form/Button';
-import Modal from '../../shared/element/Modal';
-import Map from '../../shared/element/Map';
-import { AuthContext } from '../../shared/contextapi/authContext';
-import './PlaceDisplay.css';
+import Card from "../../commons/element/Card";
+import Button from "../../commons/formstuff/Button";
+import Modal from "../../commons/element/Modal";
+import Map from "../../commons/element/Map";
+import { AuthsContext } from "../../contextApi/AuthsContext";
+import "./PlaceDisplay.css";
 
-
-const PlaceDisplay = props => {
-
+const PlaceDisplay = (props) => {
   // For hidding edit/delete btn for unAuth user
-  const getAuth = useContext(AuthContext);
+  const getAuth = useContext(AuthsContext);
 
   // State hook and handler for Modal in shared element
   const [showMap, setShowMap] = useState(false);
@@ -25,7 +23,7 @@ const PlaceDisplay = props => {
   const warningHandler = () => {
     setConfirmDelete(true);
   };
-  
+
   const cancelHandler = () => {
     setConfirmDelete(false);
   };
@@ -34,34 +32,29 @@ const PlaceDisplay = props => {
     setConfirmDelete(false);
     console.log("The place has been deleted successfully");
   };
-    
+
   return (
     <React.Fragment>
-
       {/* Modal from element for map display */}
-      <Modal 
-        show={showMap} 
-        onCancel={closeMap} 
+      <Modal
+        show={showMap}
+        onCancel={closeMap}
         header={props.address}
         contentClass="place-item__modal-content"
         footerClass="place-item__modal-actions"
-        footer={
-          <Button onClick={closeMap}>Close</Button>
-        }
+        footer={<Button onClick={closeMap}>Close</Button>}
       >
-        <div className="map-container"> 
+        <div className="map-container">
           {/* From Map comp in element */}
-          <Map center={props.coordinates}
-               zoom={16}
-          />
+          <Map center={props.coordinates} zoom={16} />
         </div>
       </Modal>
-        
+
       {/* Modal from element for delete button below */}
-      <Modal 
+      <Modal
         show={confirmDel}
         onCancel={cancelHandler}
-        header="Warning Alert!!" 
+        header="Warning Alert!!"
         headerClass="bg-warning_color"
         footerClass="place-item__modal-actions"
         footer={
@@ -76,18 +69,14 @@ const PlaceDisplay = props => {
           </React.Fragment>
         }
       >
-        <p>Are you sure you want to delete place? 
-          Action can't be undone.
-        </p>
+        <p>Are you sure you want to delete place? Action can't be undone.</p>
       </Modal>
 
       {/* Place details display with buttons */}
       <li className="place-item">
         <Card className="place-item__content">
           <div className="place-item__image">
-            <img src={props.image} 
-                 alt={props.title} 
-            />
+            <img src={props.image} alt={props.title} />
           </div>
 
           <div className="place-item__info">
@@ -102,9 +91,7 @@ const PlaceDisplay = props => {
             </Button>
 
             {getAuth.loggedIn && (
-              <Button to={`/update-place/${props.id}`}>
-                Edit
-              </Button>
+              <Button to={`/update-place/${props.id}`}>Edit</Button>
             )}
 
             {getAuth.loggedIn && (
@@ -115,9 +102,8 @@ const PlaceDisplay = props => {
           </div>
         </Card>
       </li>
-
     </React.Fragment>
   );
-}
+};
 
 export default PlaceDisplay;

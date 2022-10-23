@@ -8,23 +8,24 @@ import './Modal.css';
 
 // For location map in PlaceDisplay comp
 const Modal = props => {
-    return (
-      <React.Fragment>
+  //
+  return (
+    <React.Fragment>
+      
+      {props.show && <Backdrop onClick={props.onCancel} />}
 
-        {props.show && <Backdrop onClick={props.onCancel} />}
+      <CSSTransition
+        in={props.show}
+        mountOnEnter
+        unmountOnExit
+        timeout={200}
+        classNames="modal"
+      >
+        <ModalOverlay {...props} />
+      </CSSTransition>
 
-        <CSSTransition
-          in={props.show}
-          mountOnEnter
-          unmountOnExit
-          timeout={200}
-          classNames="modal"
-        >
-          <ModalOverlay {...props} />
-        </CSSTransition>
-
-      </React.Fragment>
-    );
+    </React.Fragment>
+  );
   };
   
   export default Modal;
@@ -32,7 +33,7 @@ const Modal = props => {
 
 // 2nd comp for internal use above, not exported
 const ModalOverlay = props => {
-
+  //
   const content = (
     <div className={`modal ${props.className}`} style={props.style}>
 

@@ -17,7 +17,7 @@ const SideDrawer = props => {
             unmountOnExit
         >
             <aside className="side-drawer" 
-                   onClick={props.onClick}
+                onClick={props.onClick}
             >
                 {props.children}
             </aside>

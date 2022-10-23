@@ -45,20 +45,24 @@ const signup = (req, res, next) => {
 
 //
 const login = (req, res, next) => {
+  //
   const { email, password } = req.body;
 
   const identifiedUser = DUMMY_USERS.find(u => u.email === email);
+
   if (!identifiedUser || identifiedUser.password !== password) {
-    throw new HttpError('Could not identify user, credentials seem to be wrong.', 401);
+    throw new HttpError('Could not identify user, wrong credentials.', 401);
   }
 
-  res.json({message: 'Logged in!'});
+  res.json({message: 'You are logged in!'});
 };
 
 //
 const _getUsers = getUsers;
 export { _getUsers as getUsers };
+
 const _signup = signup;
 export { _signup as signup };
+
 const _login = login;
 export { _login as login };

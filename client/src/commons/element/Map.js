@@ -2,10 +2,9 @@ import React, { useRef, useEffect } from 'react';
 
 import './Map.css';
 
-
 // Google map sdk API with key in public index
 const Map = props => {
-
+    //
     const mapRef = useRef();
     const { center, zoom } = props;
  

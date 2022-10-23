@@ -3,7 +3,7 @@ import { check } from 'express-validator';
 
 
 //
-const userCtr = require('../controllers/userControl');
+const userCtr = require('../controllers/userContr');
 
 //
 const userRoute = Router();

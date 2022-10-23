@@ -2,15 +2,16 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 
 
-const placeCtr = require('../controllers/placeControl');
+const placeContr = require('../controllers/placeContr');
+// import placeContr from '../controllers/placeContr'
 
 const placeRoute = Router();
 
 //
-placeRoute.get('/:pid', placeCtr.placeById);
+placeRoute.get('/:pid', placeContr.placeById);
 
 //
-placeRoute.get('/user/:uid', placeCtr.placesByUser);
+placeRoute.get('/user/:uid', placeContr.placesByUser);
 
 //
 placeRoute.post('/',
