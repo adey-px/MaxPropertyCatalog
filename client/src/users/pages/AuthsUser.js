@@ -50,7 +50,7 @@ const AuthsUser = () => {
 
   return (
     <Card className="auth__body">
-      <h2 className="auth__header">Member Access</h2>
+      <h2 className="auth__header">{loginMode ? "Member Login" : "Sign up"}</h2>
 
       <hr />
       <form onSubmit={submitHandler}>
