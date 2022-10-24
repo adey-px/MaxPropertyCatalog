@@ -7,6 +7,7 @@ import "./UserDisplay.css";
 
 // Display data for user in userAnchor comp
 const UserDisplay = (props) => {
+  //
   return (
     <div>
       <list className="user-item">

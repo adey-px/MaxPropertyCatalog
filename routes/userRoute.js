@@ -1,32 +1,28 @@
-import { Router } from 'express';
-import { check } from 'express-validator';
+import { Router } from "express";
+import { check } from "express-validator";
 
-
-//
-const userCtr = require('../controllers/userContr');
+import { getUsers, signup, login } from "../controllers/userContr.js";
 
 //
-const userRoute = Router();
+const router = Router();
 
-//
-userRoute.get('/', userCtr.getUsers);
-
-//
-userRoute.post('/signup',
+// Register new user
+router.post(
+  "/signup",
   [
-    check('name')
-      .not()
-      .isEmpty(),
-
-    check('email')
-      .normalizeEmail()
+    check("name").not().isEmpty(),
+    check("email")
+      .normalizeEmail() // Test@test.com => test@test.com
       .isEmail(),
-    check('password').isLength({ min: 6 })
+    check("password").isLength({ min: 6 }),
   ],
-  userCtr.signup
+  signup
 );
 
-userRoute.post('/login', userCtr.login);
+// Login user
+router.post("/login", login);
 
+// Read or get all users
+router.get("/", getUsers);
 
-export default userRoute;
+export default router;

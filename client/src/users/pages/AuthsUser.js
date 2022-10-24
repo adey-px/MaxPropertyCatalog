@@ -14,6 +14,7 @@ import { AuthsContext } from "../../contextApi/AuthsContext";
 import "./AuthsUser.css";
 
 const AuthsUser = () => {
+  //
   // Allow access to hidden navLinks after user login
   const getAuth = useContext(AuthsContext);
 
@@ -22,6 +23,7 @@ const AuthsUser = () => {
 
   // Call useForm hook from customhook for form state
   const [formState, inputHandler] = useForm(
+    //
     {
       email: {
         value: "",

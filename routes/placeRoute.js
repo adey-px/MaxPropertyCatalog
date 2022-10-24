@@ -1,47 +1,42 @@
-import { Router } from 'express';
-import { check } from 'express-validator';
+import { Router } from "express";
+import { check } from "express-validator";
 
-
-const placeContr = require('../controllers/placeContr');
-// import placeContr from '../controllers/placeContr'
-
-const placeRoute = Router();
-
-//
-placeRoute.get('/:pid', placeContr.placeById);
-
-//
-placeRoute.get('/user/:uid', placeContr.placesByUser);
+import {
+  createPlace,
+  placeById,
+  placesByUser,
+  updatePlace,
+  deletePlace,
+} from "../controllers/placeContr.js";
 
 //
-placeRoute.post('/',
+const router = Router();
+
+// Create new place
+router.post(
+  "/",
   [
-    check('title')
-      .not()
-      .isEmpty(),
-
-    check('description').isLength({ min: 5 }),
-    check('address')
-      .not()
-      .isEmpty()
+    check("title").not().isEmpty(),
+    check("description").isLength({ min: 5 }),
+    check("address").not().isEmpty(),
   ],
-  placeCtr.createPlace
+  createPlace
 );
 
-//
-placeRoute.patch('/:pid',
-  [
-    check('title')
-      .not()
-      .isEmpty(),
-      
-    check('description').isLength({ min: 5 })
-  ],
-  placeCtr.updatePlace
+// Read or get place
+router.get("/place/:pid", placeById);
+
+// Read or get places by user
+router.get("/user-places/:uid", placesByUser);
+
+// Update or edit place
+router.patch(
+  "/:pid",
+  [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
+  updatePlace
 );
 
-//
-placeRoute.delete('/:pid', placeCtr.deletePlace);
+// Delete place
+router.delete("/del-place/:pid", deletePlace);
 
-
-export default placeRoute;
+export default router;

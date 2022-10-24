@@ -5,7 +5,8 @@ import UserDisplay from "./UserDisplay";
 import "./UserAnchor.css";
 
 const UserAnchor = (props) => {
-  // if no users
+  //
+  // if no user
   if (props.users.length === 0) {
     return (
       <div className="center">
@@ -15,7 +16,7 @@ const UserAnchor = (props) => {
       </div>
     );
   }
-  // if users, create properties to userDisplay comp
+  // if user, create properties to userDisplay comp
   return (
     <ul className="users-list">
       {props.users.map((user) => (
