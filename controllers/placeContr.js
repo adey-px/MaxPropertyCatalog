@@ -1,8 +1,8 @@
 import * as uuid from "uuid";
 import { validationResult } from "express-validator";
 
-import HttpError from "../models/httpError.js";
-import addrCoordinate from "../utils/location.js";
+import HttpError from "../commons/httpError.js";
+import addrCoordinate from "../commons/location.js";
 
 //
 let DUMMY_PLACES = [
@@ -25,9 +25,7 @@ const createPlace = async (req, res, next) => {
   const errCheck = validationResult(req);
   //
   if (!errCheck.isEmpty()) {
-    return next(
-      new HttpError("Invalid inputs, please check your data.", 422)
-    );
+    return next(new HttpError("Invalid inputs, please check your data.", 422));
   }
   // expected incoming requests
   const { title, description, address, creator } = req.body;
@@ -39,7 +37,7 @@ const createPlace = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-  // get all incoming requests 
+  // get all incoming requests
   const newPlace = {
     id: uuid(),
     title,
@@ -58,7 +56,6 @@ const createPlace = async (req, res, next) => {
 const placeById = (req, res, next) => {
   //
   const placeId = req.params.pid; // { pid: 'place1' }
-  //
   const place = DUMMY_PLACES.find((p) => {
     return p.id === placeId;
   });
@@ -96,15 +93,14 @@ const updatePlace = (req, res, next) => {
   //
   const { title, description } = req.body;
   const placeId = req.params.pid;
-  //
+  
   const updatedPlace = { ...DUMMY_PLACES.find((p) => p.id === placeId) };
   const placeIndex = DUMMY_PLACES.findIndex((p) => p.id === placeId);
-  //
+  
   updatedPlace.title = title;
   updatedPlace.description = description;
-  //
+  
   DUMMY_PLACES[placeIndex] = updatedPlace;
-
   res.status(200).json({ place: updatedPlace });
 };
 
@@ -121,7 +117,7 @@ const deletePlace = (req, res, next) => {
   res.status(200).json({ message: "Place has been deleted." });
 };
 
-// Exports
+// Export the above logic functions
 const _createPlace = createPlace;
 export { _createPlace as createPlace };
 

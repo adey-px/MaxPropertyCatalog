@@ -31,12 +31,12 @@ router.get("/user-places/:uid", placesByUser);
 
 // Update or edit place
 router.patch(
-  "/:pid",
+  "/update/:pid",
   [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
   updatePlace
 );
 
 // Delete place
-router.delete("/del-place/:pid", deletePlace);
+router.delete("/delete/:pid", deletePlace);
 
 export default router;

@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 
 import placeRoute from "./routes/placeRoute.js";
 import userRoute from "./routes/userRoute.js";
-import HttpError from "./models/httpError.js";
+import HttpError from "./commons/httpError.js";
 
 // Instance of express app object
 const app = express();

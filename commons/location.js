@@ -1,9 +1,9 @@
 import pkg from "axios";
+import HttpError from "./httpError.js";
+
+//
 const { get } = pkg;
-
-import HttpError from "../models/httpError.js";
-
-const API_KEY = "AIzaSyDgLmMpKCzveJf1_yuA0fUzzhy0WRChvZA";
+const apiKey = "AIzaSyDgLmMpKCzveJf1_yuA0fUzzhy0WRChvZA";
 
 async function addrCoordinate(address) {
   // return {
@@ -13,7 +13,7 @@ async function addrCoordinate(address) {
   const response = await get(
     `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       address
-    )}&key=${API_KEY}`
+    )}&key=${apiKey}`
   );
 
   const data = response.data;

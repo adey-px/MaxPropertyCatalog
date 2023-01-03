@@ -1,7 +1,7 @@
 import * as uuid from "uuid";
 import { validationResult } from "express-validator";
 
-import HttpError from "../models/httpError.js";
+import HttpError from "../commons/httpError.js";
 
 //
 const DUMMY_USERS = [
@@ -52,10 +52,7 @@ const login = (req, res, next) => {
   //
   const identifiedUser = DUMMY_USERS.find((u) => u.email === email);
   if (!identifiedUser || identifiedUser.password !== password) {
-    throw new HttpError(
-      "User cannot be found, wrong credentials.",
-      401
-    );
+    throw new HttpError("User cannot be found, wrong credentials.", 401);
   }
 
   res.json({ message: "You are logged in!" });
