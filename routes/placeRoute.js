@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { check } from "express-validator";
-
 import {
   createPlace,
   placeById,
@@ -8,8 +7,8 @@ import {
   updatePlace,
   deletePlace,
 } from "../controllers/placeContr.js";
-
-//
+/*
+*/
 const router = Router();
 
 // Create new place

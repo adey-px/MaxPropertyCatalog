@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-
-import { AuthsContext } from "../../contextApi/AuthsContext";
-import "./NavbarLinks.css";
+import { AuthContext } from "../../context/AuthContext";
+import "./navbarLinks.css";
 
 const NavbarLinks = (props) => {
   //
   // To check login and logout usin authContext
-  const getAuth = useContext(AuthsContext);
+  const getAuth = useContext(AuthContext);
 
   return (
     // navLinks as children for sideDrawer comp
@@ -32,7 +31,7 @@ const NavbarLinks = (props) => {
 
       {!getAuth.loggedIn && (
         <li>
-          <NavLink to="/auth-User">Account</NavLink>
+          <NavLink to="/userAuth">Account</NavLink>
         </li>
       )}
 

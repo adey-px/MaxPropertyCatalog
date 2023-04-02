@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import MainHeader from "../header/MainHeader";
 import NavbarLinks from "./NavbarLinks";
 import SideDrawer from "../mobile/SideDrawer";
 import Backdrop from "../element/Backdrop";
-import "./MainNavbar.css";
+import "./mainNavbar.css";
 
+//
 const MainNavbar = (props) => {
-  // State hook for siteDrawer open
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Handler to open siteDrawer button
+  // open siteDrawer handler
   const openDrawer = () => {
     setDrawerOpen(true);
   };
 
-  // Close siteDrawer, works with Backdrop in element dir
+  // close siteDrawer, ref Backdrop in element dir
   const closeDrawer = () => {
     setDrawerOpen(false);
   };

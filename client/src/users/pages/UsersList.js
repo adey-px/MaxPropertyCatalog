@@ -1,9 +1,7 @@
 import React from "react";
-
 import UserAnchor from "../components/UserAnchor";
 
 const UsersList = () => {
-
   // Dummy data storage for user
   const LIST = [
     {
