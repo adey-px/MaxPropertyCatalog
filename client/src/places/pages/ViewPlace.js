@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import PlaceAnchor from '../components/PlaceAnchor';
+import PlaceList from '../components/PlaceList';
 
 const ViewPlace = () => {
 	const DUMMY_PLACES = [
@@ -38,12 +38,12 @@ const ViewPlace = () => {
 	// Sort places by user-id encoded in viewPlace url in App
 	const userID = useParams().uid;
 
-	const userPlace = DUMMY_PLACES.filter(
+	const userPlaces = DUMMY_PLACES.filter(
 		(place) => place.creator === userID
 	);
 
 	// Display data for places in placeAnchor comp
-	return <PlaceAnchor places={userPlace} />;
+	return <PlaceList places={userPlaces} />;
 };
 
 export default ViewPlace;

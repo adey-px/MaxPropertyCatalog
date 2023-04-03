@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from '../../features/element/Card';
-import UserDisplay from './UserDisplay';
-import './UserAnchor.css';
+import UserItem from './UserItem';
+import './userList.css';
 
-const UserAnchor = (props) => {
-	//
+// Display user based on properties
+const UserList = (props) => {
 	// if no user
 	if (props.users.length === 0) {
 		return (
@@ -15,11 +15,11 @@ const UserAnchor = (props) => {
 			</div>
 		);
 	}
-	// if user, create properties to userDisplay comp
+	// if user
 	return (
 		<ul className='users-list'>
 			{props.users.map((user) => (
-				<UserDisplay
+				<UserItem
 					key={user.id}
 					id={user.id}
 					name={user.name}
@@ -31,4 +31,4 @@ const UserAnchor = (props) => {
 	);
 };
 
-export default UserAnchor;
+export default UserList;

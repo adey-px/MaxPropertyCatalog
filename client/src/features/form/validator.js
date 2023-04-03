@@ -1,6 +1,6 @@
 /*
  */
-// Identifiers of diff validator types
+// Identifier for validator types
 const VALIDATOR_TYPE_REQUIRED = 'REQUIRED';
 const VALIDATOR_TYPE_MINLENGTH = 'MINLENGTH';
 const VALIDATOR_TYPE_MAXLENGTH = 'MAXLENGTH';
@@ -41,12 +41,12 @@ export const VALIDATOR_EMAIL = () => ({
 	type: VALIDATOR_TYPE_EMAIL,
 });
 /*
-*/
-// Validator functions
-export const validate = (value, validators) => {
+ */
+// Validator types
+export const validate = (value, Validator) => {
 	let isValid = true;
 
-	for (const validator of validators) {
+	for (const validator of Validator) {
 		if (validator.type === VALIDATOR_TYPE_REQUIRED) {
 			isValid = isValid && value.trim().length > 0;
 		}

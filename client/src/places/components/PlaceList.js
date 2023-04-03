@@ -1,12 +1,12 @@
 import React from 'react';
 import Card from '../../features/element/Card';
-import PlaceDisplay from './PlaceDisplay';
 import Button from '../../features/form/Button';
-import './PlaceAnchor.css';
+import PlaceItem from './PlaceItem.js';
+import './placeList.css';
 
 //
-const PlaceAnchor = (props) => {
-	// If no places found
+const PlaceList = (props) => {
+	// if no places found
 	if (props.places.length === 0) {
 		return (
 			<div className='place-list center'>
@@ -18,11 +18,11 @@ const PlaceAnchor = (props) => {
 		);
 	}
 
-	// properties for placeDisplay comp
+	// properties from PlaceItem 
 	return (
 		<ul className='place-list'>
 			{props.places.map((place) => (
-				<PlaceDisplay
+				<PlaceItem
 					key={place.id}
 					id={place.id}
 					image={place.imageUrl}
@@ -37,4 +37,4 @@ const PlaceAnchor = (props) => {
 	);
 };
 
-export default PlaceAnchor;
+export default PlaceList;

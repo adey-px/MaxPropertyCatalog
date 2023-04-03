@@ -4,17 +4,17 @@ import Button from '../../features/form/Button';
 import Modal from '../../features/element/Modal';
 import Map from '../../features/element/Map';
 import { AuthContext } from '../../context/AuthContext';
-import './PlaceDisplay.css';
+import './placeItem.css';
 /*
  */
-const PlaceDisplay = (props) => {
-	const getAuth = useContext(AuthContext);
+const PlaceItem = (props) => {
+	const authUser = useContext(AuthContext);
 	const [showMap, setShowMap] = useState(false);
-	const [confirmDel, setConfirmDelete] = useState(false);
+	const [confirmDelete, setConfirmDelete] = useState(false);
 
 	/* show & close map */
-	const openMap = () => setShowMap(true);
-	const closeMap = () => setShowMap(false);
+	const openMapHandler = () => setShowMap(true);
+	const closeMapHandler = () => setShowMap(false);
 
 	const warningHandler = () => {
 		setConfirmDelete(true);
@@ -33,11 +33,13 @@ const PlaceDisplay = (props) => {
 			{/* Modal from element for map display */}
 			<Modal
 				show={showMap}
-				onCancel={closeMap}
+				onCancel={closeMapHandler}
 				header={props.address}
 				contentClass='place-item__modal-content'
 				footerClass='place-item__modal-actions'
-				footer={<Button onClick={closeMap}>Close</Button>}
+				footer={
+					<Button onClick={closeMapHandler}>Close</Button>
+				}
 			>
 				<div className='map-container'>
 					{/* From Map comp in element */}
@@ -50,9 +52,9 @@ const PlaceDisplay = (props) => {
 
 			{/* Modal from element for delete button below */}
 			<Modal
-				show={confirmDel}
+				show={confirmDelete}
 				onCancel={cancelHandler}
-				header='Warning Alert!!'
+				header='Warning Alert!! Sure to delete?'
 				headerClass='bg-warning_color'
 				footerClass='place-item__modal-actions'
 				footer={
@@ -98,18 +100,18 @@ const PlaceDisplay = (props) => {
 					<div className='place-item__actions'>
 						<Button
 							inverse
-							onClick={openMap}
+							onClick={openMapHandler}
 						>
 							View On Map
 						</Button>
 
-						{getAuth.loggedIn && (
+						{authUser.loggedIn && (
 							<Button to={`/update-place/${props.id}`}>
 								Edit
 							</Button>
 						)}
 
-						{getAuth.loggedIn && (
+						{authUser.loggedIn && (
 							<Button
 								danger
 								onClick={warningHandler}
@@ -124,4 +126,4 @@ const PlaceDisplay = (props) => {
 	);
 };
 
-export default PlaceDisplay;
+export default PlaceItem;

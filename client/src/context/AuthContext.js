@@ -1,10 +1,8 @@
 import { createContext } from 'react';
 
-// Take to wrap all routes in App for auth check
+// To wrap all routes in App for checking auth
 export const AuthContext = createContext({
 	loggedIn: false,
-
 	login: () => {},
-
 	logout: () => {},
 });

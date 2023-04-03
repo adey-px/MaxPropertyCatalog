@@ -6,7 +6,7 @@ import { useFetch } from '../../hooks/useFetch';
 import {
 	VALIDATOR_REQUIRED,
 	VALIDATOR_MINLENGTH,
-} from '../../features/form/validators';
+} from '../../features/form/validator';
 import './NewPlace.css';
 
 //
@@ -94,7 +94,7 @@ const UpdatePlace = () => {
 				element='input'
 				type='text'
 				label='Title'
-				validators={[VALIDATOR_REQUIRED()]}
+				Validator={[VALIDATOR_REQUIRED()]}
 				errorText='Please enter a valid title.'
 				onInput={inputHandler}
 				initialValue={formState.inputs.title.value}
@@ -104,7 +104,7 @@ const UpdatePlace = () => {
 				id='description'
 				element='textarea'
 				label='Description'
-				validators={[VALIDATOR_MINLENGTH(5)]}
+				Validator={[VALIDATOR_MINLENGTH(5)]}
 				errorText='Please enter minimum of 5 characters.'
 				onInput={inputHandler}
 				initialValue={formState.inputs.description.value}

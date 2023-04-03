@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '../../features/element/Avatar';
 import Card from '../../features/element/Card';
-import './UserDisplay.css';
+import './userItem.css';
 
-// Display data for user in userAnchor comp
-const UserDisplay = (props) => {
+// Define properties for user
+const UserItem = (props) => {
 	return (
 		<div>
 			<list className='user-item'>
@@ -32,4 +32,4 @@ const UserDisplay = (props) => {
 	);
 };
 
-export default UserDisplay;
+export default UserItem;

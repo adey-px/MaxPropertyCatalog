@@ -3,40 +3,40 @@ import {
 	BrowserRouter as Router,
 	Route,
 	Redirect,
-	Switch,
 } from 'react-router-dom';
 import MainNavbar from './features/navbar/MainNavbar';
-import UsersList from './users/pages/UsersList';
 import ViewPlace from './places/pages/ViewPlace';
 import NewPlace from './places/pages/NewPlace';
 import UpdatePlace from './places/pages/UpdatePlace';
-import UserAuth from './users/pages/UserAuth';
+import HomePage from './users/pages/HomePage';
+import UserLogin from './users/pages/UserLogin';
 import { AuthContext } from './context/AuthContext';
 
 //
 const App = () => {
-	// State hooks for authContext below, to navLinks comp
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	const login = useCallback(() => {
+	/* login ref in authcontext */
+	const loginHandler = useCallback(() => {
 		setLoggedIn(true);
 	}, []);
 
-	const logout = useCallback(() => {
+	/* logout ref in authcontext */
+	const logoutHandler = useCallback(() => {
 		setLoggedIn(false);
 	}, []);
 
-	// Redirect users to selected routes
 	let routes;
 
+	/* condition to show routes */
 	if (loggedIn) {
 		routes = (
 			<React.Fragment>
-				<Redirect to='/' />,
+				<Redirect to='/' />
 				<Route
 					exact
 					path='/'
-					component={UsersList}
+					component={HomePage}
 				/>
 				<Route
 					exact
@@ -55,19 +55,19 @@ const App = () => {
 				/>
 				<Route
 					exact
-					path='/authUser'
-					component={UserAuth}
+					path='/account'
+					component={UserLogin}
 				/>
 			</React.Fragment>
 		);
 	} else {
 		routes = (
 			<React.Fragment>
-				<Redirect to='/' />
+				<Redirect to='/account' />
 				<Route
 					exact
 					path='/'
-					component={UsersList}
+					component={HomePage}
 				/>
 				<Route
 					exact
@@ -76,28 +76,24 @@ const App = () => {
 				/>
 				<Route
 					exact
-					path='/userAuth'
-					component={UserAuth}
+					path='/account'
+					component={UserLogin}
 				/>
 			</React.Fragment>
 		);
 	}
 
 	return (
-		// Wrap all routes with authsContext from contextapi
 		<AuthContext.Provider
 			value={{
 				loggedIn: loggedIn,
-				login: login,
-				logout: logout,
+				login: loginHandler,
+				logout: logoutHandler,
 			}}
 		>
 			<Router>
 				<MainNavbar />
-
-				<main>
-					<Switch>{routes}</Switch>
-				</main>
+				<main>{routes}</main>
 			</Router>
 		</AuthContext.Provider>
 	);

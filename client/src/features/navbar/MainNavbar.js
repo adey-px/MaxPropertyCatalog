@@ -1,55 +1,63 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import MainHeader from "../header/MainHeader";
-import NavbarLinks from "./NavbarLinks";
-import SideDrawer from "../mobile/SideDrawer";
-import Backdrop from "../element/Backdrop";
-import "./mainNavbar.css";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import MainHeader from '../header/MainHeader';
+import NavbarLinks from './NavbarLinks';
+import SideNavbar from '../mobile/SideNavbar';
+import Backdrop from '../element/Backdrop';
+import './mainNavbar.css';
 
 //
 const MainNavbar = (props) => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+	const [mobileView, setmobileView] = useState(false);
 
-  // open siteDrawer handler
-  const openDrawer = () => {
-    setDrawerOpen(true);
-  };
+	// open siteDrawer handler
+	const openSideNavHandler = () => {
+		setmobileView(true);
+	};
 
-  // close siteDrawer, ref Backdrop in element dir
-  const closeDrawer = () => {
-    setDrawerOpen(false);
-  };
+	// close siteDrawer, ref Backdrop in element dir
+	const closeSideNavHandler = () => {
+		setmobileView(false);
+	};
 
-  return (
-    <React.Fragment>
-      {/* If siteDraw is open, render backdrop comp to close it*/}
-      {drawerOpen && <Backdrop onClick={closeDrawer} />}
+	return (
+		<React.Fragment>
+			{/* if siteNavbar open, show backdrop to close it */}
+			{mobileView && (
+				<Backdrop onClick={closeSideNavHandler} />
+			)}
 
-      {/* Sidedrawer from sideDrawer comp in mobile dir */}
-      <SideDrawer show={drawerOpen} onClick={closeDrawer}>
-        <nav className="main-navigation__drawer-nav">
-          <NavbarLinks />
-        </nav>
-      </SideDrawer>
+			{/* sideNavbar for mobile view */}
+			<SideNavbar
+				show={mobileView}
+				onClick={closeSideNavHandler}
+			>
+				<nav className='main-navigation__drawer-nav'>
+					<NavbarLinks />
+				</nav>
+			</SideNavbar>
 
-      {/* For children in mainHeader comp */}
-      <MainHeader>
-        <button className="main-navigation__menu-btn" onClick={openDrawer}>
-          <span />
-          <span />
-          <span />
-        </button>
+			{/* children in mainHeader */}
+			<MainHeader>
+				<button
+					onClick={openSideNavHandler}
+					className='main-navigation__menu-btn'
+				>
+					<span />
+					<span />
+					<span />
+				</button>
 
-        <h1 className="main-navigation__title">
-          <Link to="/">GeoTracker</Link>
-        </h1>
+				<h1 className='main-navigation__title'>
+					<Link to='/'>GeoTracker</Link>
+				</h1>
 
-        <nav className="main-navigation__header-nav">
-          <NavbarLinks />
-        </nav>
-      </MainHeader>
-    </React.Fragment>
-  );
+				<nav className='main-navigation__header-nav'>
+					<NavbarLinks />
+				</nav>
+			</MainHeader>
+		</React.Fragment>
+	);
 };
 
 export default MainNavbar;

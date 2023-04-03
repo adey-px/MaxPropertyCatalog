@@ -1,5 +1,5 @@
 import pkg from 'axios';
-import HttpError from './raiseError.js';
+import RaiseError from './RaiseError.js';
 
 //
 const { get } = pkg;
@@ -19,7 +19,7 @@ async function addrCoordinate(address) {
 	const data = response.data;
 
 	if (!data || data.status === 'ZERO_RESULTS') {
-		const error = new HttpError(
+		const error = new RaiseError(
 			'Could not find location for the specified address.',
 			422
 		);
@@ -27,7 +27,6 @@ async function addrCoordinate(address) {
 	}
 
 	const coordinates = data.results[0].geometry.location;
-
 	return coordinates;
 }
 

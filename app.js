@@ -1,12 +1,17 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 import placeRoute from './routes/placeRoute.js';
 import userRoute from './routes/userRoute.js';
-import raiseError from './helpers/raiseError.js';
+import RaiseError from './helpers/RaiseError.js';
 /*
  */
 // Instance of express app object
 const app = express();
+
+// Load environment variables from dotenv
+dotenv.config();
 
 // Parse body of any incoming request
 app.use(bodyParser.json());
@@ -17,7 +22,7 @@ app.use('/users', userRoute);
 
 // Middlewares for custom error handler
 app.use((req, res, next) => {
-	const error = new raiseError(
+	const error = new RaiseError(
 		'Oops! Resources not found',
 		404
 	);
@@ -34,7 +39,18 @@ app.use((err, req, res, next) => {
 	});
 });
 
-// Configure server
-app.listen(4000, () => {
-	console.log('Development server is running');
-});
+// Database config
+mongoose
+	.connect(
+		process.env.MONGO_URL,
+		console.log('Database server connected...')
+	)
+	.then(
+		app.listen(
+			4000,
+			console.log('Development server running...')
+		)
+	)
+	.catch((err) => {
+		console.log(err);
+	});

@@ -5,12 +5,11 @@ import { useFetch } from '../../hooks/useFetch';
 import {
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRED,
-} from '../../features/form/validators';
+} from '../../features/form/validator';
 import './NewPlace.css';
 
 //
 const NewPlace = () => {
-	// Call useFetch hook from hooks
 	const [formState, inputHandler] = useFetch(
 		{
 			title: {
@@ -29,24 +28,21 @@ const NewPlace = () => {
 		false
 	);
 
-	// For form submit btn
-	const submitHandler = (event) => {
-		event.preventDefault();
-		console.log(formState.inputs); // To be sent to server
+	const submitHandler = (e) => {
+		e.preventDefault();
 	};
 
 	return (
-		// Input from Input comp in form dir
 		<form
-			className='place-form'
 			onSubmit={submitHandler}
+			className='place-form'
 		>
 			<Input
 				id='title'
 				element='input'
 				type='text'
 				label='Title'
-				validators={[VALIDATOR_REQUIRED()]}
+				validator={[VALIDATOR_REQUIRED()]}
 				errorText='Please enter a valid title'
 				onInput={inputHandler}
 			/>
@@ -54,7 +50,7 @@ const NewPlace = () => {
 				id='description'
 				element='textarea'
 				label='Description'
-				validators={[VALIDATOR_MINLENGTH(5)]}
+				validator={[VALIDATOR_MINLENGTH(5)]}
 				errorText='Minimum of 5 characters is required'
 				onInput={inputHandler}
 			/>
@@ -62,7 +58,7 @@ const NewPlace = () => {
 				id='address'
 				element='input'
 				label='Address'
-				validators={[VALIDATOR_REQUIRED()]}
+				validator={[VALIDATOR_REQUIRED()]}
 				errorText='Please enter a valid address'
 				onInput={inputHandler}
 			/>

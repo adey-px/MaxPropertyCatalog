@@ -8,19 +8,19 @@ import {
 	VALIDATOR_EMAIL,
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRED,
-} from '../../features/form/validators';
-import './userAuth.css';
+} from '../../features/form/validator';
+import './userLogin.css';
 
 //
-const UserAuth = () => {
-	// Allow access to hidden navLinks after user login
-	const getAuth = useContext(AuthContext);
+const UserLogin = () => {
+	/* access to hidden navLinks after login */
+	const authUser = useContext(AuthContext);
 
-	// State hooks to switch login/signup in form inputs
+	/* hook to switch login/signup mode */
 	const [loginMode, setLoginMode] = useState(true);
 
-	// Call useFetch hook from hooks for form state
-	const [formState, inputHandler] = useFetch(
+	/* useFetch hook from hooks for form state */
+	const [formState, inputHandler, setFormData] = useFetch(
 		{
 			email: {
 				value: '',
@@ -34,35 +34,50 @@ const UserAuth = () => {
 		false
 	);
 
-	// For submit btn in form
-	const submitHandler = (event) => {
-		event.preventDefault();
-		getAuth.login();
-
-		console.log(formState.inputs); // To server
-	};
-
 	// Switch from login/signup form inputs
 	const switchHandler = () => {
+		if (!loginMode) {
+			setFormData(
+				{ ...formState.inputs, name: undefined },
+				formState.inputs.email.isValid &&
+					formState.inputs.password.isValid
+			);
+		} else {
+			setFormData(
+				{
+					...formState.inputs,
+					name: {
+						value: '',
+						isValid: false,
+					},
+				},
+				false
+			);
+		}
 		setLoginMode((prevMode) => !prevMode);
+	};
+
+	// Form submit handler
+	const submitHandler = (e) => {
+		e.preventDefault();
+		authUser.login();
 	};
 
 	return (
 		<Card className='auth__body'>
 			<h2 className='auth__header'>
-				{loginMode ? 'Member Login' : 'Sign up'}
+				{loginMode ? 'Login' : 'Sign up'}
 			</h2>
 
 			<hr />
 			<form onSubmit={submitHandler}>
-				{/* If not loginMode, show name input */}
 				{!loginMode && (
 					<Input
 						element='input'
 						id='name'
 						type='text'
 						label='Name'
-						validators={[VALIDATOR_REQUIRED()]}
+						validator={[VALIDATOR_REQUIRED()]}
 						errorText='Please enter a valid email address'
 						onInput={inputHandler}
 					/>
@@ -72,7 +87,7 @@ const UserAuth = () => {
 					id='email'
 					type='email'
 					label='E-mail'
-					validators={[VALIDATOR_EMAIL()]}
+					validator={[VALIDATOR_EMAIL()]}
 					errorText='Please enter a valid email address'
 					onInput={inputHandler}
 				/>
@@ -81,10 +96,11 @@ const UserAuth = () => {
 					id='password'
 					type='password'
 					label='Password'
-					validators={[VALIDATOR_MINLENGTH(5)]}
+					validator={[VALIDATOR_MINLENGTH(5)]}
 					errorText='Minimum of 5 characters required'
 					onInput={inputHandler}
 				/>
+
 				{/* Change text on form button by switch btn */}
 				<div className='btn-center'>
 					<Button
@@ -111,4 +127,4 @@ const UserAuth = () => {
 	);
 };
 
-export default UserAuth;
+export default UserLogin;

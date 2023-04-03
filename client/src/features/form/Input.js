@@ -1,15 +1,15 @@
 import React, { useReducer, useEffect } from 'react';
-import { validate } from './validators';
+import { validate } from './validator';
 import './Input.css';
 
-// Pre-define useReducer for Input comp below
+// Reducer for Input below
 const inputReducer = (state, action) => {
 	switch (action.type) {
 		case 'CHANGE':
 			return {
 				...state,
 				value: action.val,
-				isValid: validate(action.val, action.validators),
+				isValid: validate(action.val, action.validator),
 			};
 		case 'TOUCH': {
 			return {
@@ -22,39 +22,40 @@ const inputReducer = (state, action) => {
 	}
 };
 
-// Input comp starts here
+//
 const Input = (props) => {
-	// When user inputs. Set values from updatePlace comp
+	/* default states of input */
 	const [inputState, dispatch] = useReducer(inputReducer, {
-		value: props.initialValue || ' ',
 		isTouched: false,
 		isValid: props.initValidity || false,
+		value: props.initialValue || '',
 	});
 
-	// For inputHandler in newPlace comp
 	const { id, onInput } = props;
 	const { value, isValid } = inputState;
 
+	/* side effect */
 	useEffect(() => {
 		onInput(id, value, isValid);
 	}, [id, value, isValid, onInput]);
 
-	const changeHandler = (event) => {
+	/* input change handler */
+	const changeHandler = (e) => {
 		dispatch({
 			type: 'CHANGE',
-			val: event.target.value,
-			validators: props.validators,
+			val: e.target.value,
+			validator: props.validator,
 		});
 	};
 
-	// To delay validator till user input something
+	/* input touch handler */
 	const touchHandler = () => {
 		dispatch({
 			type: 'TOUCH',
 		});
 	};
 
-	// Form input for newPlace comp
+	/* define input selector */
 	const element =
 		props.element === 'input' ? (
 			<input
@@ -76,18 +77,22 @@ const Input = (props) => {
 		);
 
 	return (
+		/* input div with dynamic styling */
 		<div
 			className={`form-control ${
-				!inputState.isValid &&
 				inputState.isTouched &&
+				!inputState.isValid &&
 				'form-control--invalid'
 			}`}
 		>
+			{/* input label */}
 			<label htmlFor={props.id}>{props.label}</label>
 
+			{/* input selector */}
 			{element}
 
-			{!inputState.isValid && inputState.isTouched && (
+			{/* conditions for error text */}
+			{inputState.isTouched && !inputState.isValid && (
 				<p>{props.errorText}</p>
 			)}
 		</div>
