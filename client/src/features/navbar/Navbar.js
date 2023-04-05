@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import MainHeader from '../header/MainHeader';
-import NavbarLinks from './NavbarLinks';
+import MainHeader from '../header/Header';
+import NavbarLinks from './NavLinks';
 import SideNavbar from '../mobile/SideNavbar';
 import Backdrop from '../element/Backdrop';
-import './mainNavbar.css';
+import './navbar.css';
 
 //
 const MainNavbar = (props) => {
@@ -49,7 +49,7 @@ const MainNavbar = (props) => {
 				</button>
 
 				<h1 className='main-navigation__title'>
-					<Link to='/'>GeoTracker</Link>
+					<Link to='/'>Catalog</Link>
 				</h1>
 
 				<nav className='main-navigation__header-nav'>

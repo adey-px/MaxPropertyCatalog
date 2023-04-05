@@ -7,50 +7,16 @@ import {
 	VALIDATOR_REQUIRED,
 	VALIDATOR_MINLENGTH,
 } from '../../features/form/validator';
-import './NewPlace.css';
+import PROPERTIES from '../../datasource/property';
+import './createProperty.css';
 
 //
-// Place data from viewPlace comp
-const DUMMY_PLACES = [
-	{
-		id: 'place1',
-		title: 'Empire State Building',
-		description:
-			'One of the most famous sky scrapers in the world!',
-		imageUrl:
-			'https://upload.wikimedia.org/wikipedia/features/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
-		address: '20 W 34th St, New York, NY 10001',
-		location: {
-			lat: 40.7484405,
-			lng: -73.9878584,
-		},
-
-		creator: 'user1',
-	},
-
-	{
-		id: 'place2',
-		title: 'Empire State Building',
-		description:
-			'One of the most famous sky scrapers in the world!',
-		imageUrl:
-			'https://upload.wikimedia.org/wikipedia/features/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
-		address: '20 W 34th St, New York, NY 10001',
-		location: {
-			lat: 40.7484405,
-			lng: -73.9878584,
-		},
-
-		creator: 'user2',
-	},
-];
-
-const UpdatePlace = () => {
+const UpdateProperty = () => {
 	// Get place id - pid from url in App route
 	const placeId = useParams().pid;
 
 	// Retrieve place from db
-	const getPlace = DUMMY_PLACES.find(
+	const property = PROPERTIES.find(
 		(place) => place.id === placeId
 	);
 
@@ -58,11 +24,11 @@ const UpdatePlace = () => {
 	const [formState, inputHandler] = useFetch(
 		{
 			title: {
-				value: getPlace.title,
+				value: property.title,
 				isValid: true,
 			},
 			description: {
-				value: getPlace.description,
+				value: property.description,
 				isValid: true,
 			},
 		},
@@ -76,7 +42,7 @@ const UpdatePlace = () => {
 	};
 
 	// If place not exists
-	if (!getPlace) {
+	if (!property) {
 		return (
 			<div className='center'>
 				<h2>Sorry, we could not find place!</h2>
@@ -122,4 +88,4 @@ const UpdatePlace = () => {
 	);
 };
 
-export default UpdatePlace;
+export default UpdateProperty;

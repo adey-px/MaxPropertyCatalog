@@ -1,8 +1,8 @@
 import React from 'react';
-import './MainHeader.css';
+import './header.css';
 
 //
-const MainHeader = (props) => {
+const Header = (props) => {
 	return (
 		// children from mainNavbar
 		<header className='main-header'>
@@ -11,4 +11,4 @@ const MainHeader = (props) => {
 	);
 };
 
-export default MainHeader;
+export default Header;

@@ -3,7 +3,7 @@ import { useCallback, useReducer } from 'react';
 This is custom hook, not built-in React hook.
 Reducer is built first, followed below by hook.
 */
-// formReducer for useReducer below
+// Reducer fn refer below
 const formReducer = (state, action) => {
 	switch (action.type) {
 		case 'INPUT_CHANGE':

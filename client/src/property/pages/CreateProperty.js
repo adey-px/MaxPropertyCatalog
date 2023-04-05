@@ -6,10 +6,10 @@ import {
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRED,
 } from '../../features/form/validator';
-import './NewPlace.css';
+import './createProperty.css';
 
 //
-const NewPlace = () => {
+const CreateProperty = () => {
 	const [formState, inputHandler] = useFetch(
 		{
 			title: {
@@ -28,6 +28,7 @@ const NewPlace = () => {
 		false
 	);
 
+	/* form submit handler */
 	const submitHandler = (e) => {
 		e.preventDefault();
 	};
@@ -67,11 +68,11 @@ const NewPlace = () => {
 					type='submit'
 					disabled={!formState.isValid}
 				>
-					Add Place
+					Add Property
 				</Button>
 			</div>
 		</form>
 	);
 };
 
-export default NewPlace;
+export default CreateProperty;

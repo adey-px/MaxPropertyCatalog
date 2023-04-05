@@ -4,11 +4,12 @@ import {
 	Route,
 	Redirect,
 } from 'react-router-dom';
-import MainNavbar from './features/navbar/MainNavbar';
-import ViewPlace from './places/pages/ViewPlace';
-import NewPlace from './places/pages/NewPlace';
-import UpdatePlace from './places/pages/UpdatePlace';
+import Navbar from './features/navbar/Navbar';
 import HomePage from './users/pages/HomePage';
+import ViewProperties from './property/pages/ViewProperties'
+import UserProperties from './property/pages/UserProperties';
+import CreateProperty from './property/pages/CreateProperty';
+import UpdateProperty from './property/pages/UpdateProperty';
 import UserLogin from './users/pages/UserLogin';
 import { AuthContext } from './context/AuthContext';
 
@@ -40,30 +41,29 @@ const App = () => {
 				/>
 				<Route
 					exact
-					path='/user-places/:uid'
-					component={ViewPlace}
+					path='/properties/all'
+					component={ViewProperties}
 				/>
 				<Route
 					exact
-					path='/new-place'
-					component={NewPlace}
+					path='/properties/:uid'
+					component={UserProperties}
 				/>
 				<Route
 					exact
-					path='/update-place/:pid'
-					component={UpdatePlace}
+					path='/create-property'
+					component={CreateProperty}
 				/>
 				<Route
 					exact
-					path='/account'
-					component={UserLogin}
+					path='/update-property/:pid'
+					component={UpdateProperty}
 				/>
 			</React.Fragment>
 		);
 	} else {
 		routes = (
 			<React.Fragment>
-				<Redirect to='/account' />
 				<Route
 					exact
 					path='/'
@@ -71,8 +71,13 @@ const App = () => {
 				/>
 				<Route
 					exact
-					path='/user-places/:uid'
-					component={ViewPlace}
+					path='/properties/all'
+					component={ViewProperties}
+				/>
+				<Route
+					exact
+					path='/properties/:uid'
+					component={UserProperties}
 				/>
 				<Route
 					exact
@@ -92,7 +97,7 @@ const App = () => {
 			}}
 		>
 			<Router>
-				<MainNavbar />
+				<Navbar />
 				<main>{routes}</main>
 			</Router>
 		</AuthContext.Provider>

@@ -36,6 +36,7 @@
   background: transparent;
   padding: 0.5rem;
   font: inherit;
+  border-radius: 5px;
 }
 
 .nav-links button:focus {

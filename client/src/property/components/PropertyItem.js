@@ -4,10 +4,10 @@ import Button from '../../features/form/Button';
 import Modal from '../../features/element/Modal';
 import Map from '../../features/element/Map';
 import { AuthContext } from '../../context/AuthContext';
-import './placeItem.css';
+import './propertyItem.css';
 /*
  */
-const PlaceItem = (props) => {
+const PropertyItem = (props) => {
 	const authUser = useContext(AuthContext);
 	const [showMap, setShowMap] = useState(false);
 	const [confirmDelete, setConfirmDelete] = useState(false);
@@ -16,14 +16,17 @@ const PlaceItem = (props) => {
 	const openMapHandler = () => setShowMap(true);
 	const closeMapHandler = () => setShowMap(false);
 
+	/* warn bfore deleting map */
 	const warningHandler = () => {
 		setConfirmDelete(true);
 	};
 
+	/* cancel */
 	const cancelHandler = () => {
 		setConfirmDelete(false);
 	};
 
+	/* delete map */
 	const deleteHandler = () => {
 		setConfirmDelete(false);
 	};
@@ -76,12 +79,12 @@ const PlaceItem = (props) => {
 				}
 			>
 				<p>
-					Are you sure you want to delete place? Action
-					can't be undone.
+					Are you sure you want to delete place? 
+					Action can't be undone.
 				</p>
 			</Modal>
 
-			{/* Place details display with buttons */}
+			{/* Property details display with buttons */}
 			<li className='place-item'>
 				<Card className='place-item__content'>
 					<div className='place-item__image'>
@@ -106,7 +109,7 @@ const PlaceItem = (props) => {
 						</Button>
 
 						{authUser.loggedIn && (
-							<Button to={`/update-place/${props.id}`}>
+							<Button to={`/update-property/${props.id}`}>
 								Edit
 							</Button>
 						)}
@@ -126,4 +129,4 @@ const PlaceItem = (props) => {
 	);
 };
 
-export default PlaceItem;
+export default PropertyItem;
